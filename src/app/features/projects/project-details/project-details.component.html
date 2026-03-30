@@ -1,0 +1,32 @@
+<main class="page">
+  <article class="card">
+    @if (project(); as selectedProject) {
+      <section class="section-block">
+        <a routerLink="/projects">← Back to projects</a>
+
+        <h1>{{ selectedProject.title }}</h1>
+        <p class="text">{{ selectedProject.description }}</p>
+        <p class="text">Year: {{ selectedProject.year }}</p>
+
+        <div class="tag-list">
+          @for (tech of selectedProject.technologies; track tech) {
+            <a
+              class="tag"
+              [routerLink]="['/projects']"
+              [queryParams]="{ tech: tech }"
+            >
+              {{ tech }}
+            </a>
+          }
+        </div>
+
+        <p>{{ selectedProject.content }}</p>
+      </section>
+    } @else {
+      <section class="section-block">
+        <h1>Project not found</h1>
+        <a routerLink="/projects">Back to projects</a>
+      </section>
+    }
+  </article>
+</main>
