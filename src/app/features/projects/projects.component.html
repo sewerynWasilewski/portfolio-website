@@ -1,0 +1,49 @@
+<main class="page">
+  <article class="card">
+    <section class="section-block">
+      <div class="section-header">
+        <h1>{{ pageTitle() }}</h1>
+
+        @if (techFilter()) {
+          <a routerLink="/projects">Clear filter</a>
+        }
+      </div>
+
+      @if (techFilter()) {
+        <p class="text">
+          Active filter:
+          <strong>{{ techFilter() }}</strong>
+        </p>
+      }
+
+      <div class="project-list">
+        @for (project of filteredProjects(); track trackByProject($index, project)) {
+          <article class="project-card">
+            <div class="project-main">
+              <h2>{{ project.title }}</h2>
+              <p>{{ project.description }}</p>
+
+              <div class="tag-list">
+                @for (tech of project.technologies; track tech) {
+                  <a
+                    class="tag"
+                    [routerLink]="['/projects']"
+                    [queryParams]="{ tech: tech }"
+                  >
+                    {{ tech }}
+                  </a>
+                }
+              </div>
+
+              <a [routerLink]="['/projects', project.id]">Read more →</a>
+            </div>
+
+            <div class="project-year">{{ project.year }}</div>
+          </article>
+        } @empty {
+          <p class="text">No projects found for this technology.</p>
+        }
+      </div>
+    </section>
+  </article>
+</main>
