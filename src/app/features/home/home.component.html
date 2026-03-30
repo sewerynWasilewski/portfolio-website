@@ -1,0 +1,126 @@
+<main class="page">
+  <article class="card">
+    <section class="intro">
+      <img
+        class="avatar"
+        src="assets/mypic.png"
+        alt="Zdjęcie profilowe Seweryna Wasilewskiego"
+      />
+
+      <h1 class="headline">
+        Hey, I'm Seweryn Wasilewski.<br />
+        I'm a <span class="text-blue">DevOps</span> <span class="text-yellow">Engineer</span><br />
+        &amp; <span class="text-green">Fullstack</span> <span class="text-red">Developer</span>.
+      </h1>
+
+      <p class="intro-text">
+        Right now, I fulfill myself as DevOps Engineer at
+        <a class="accent-link" href="https://tenesys.io" target="_blank" rel="noopener noreferrer">TENESYS</a>.
+        Not only that, I'm also a student at
+        <a class="accent-link" href="https://put.poznan.pl/" target="_blank" rel="noopener noreferrer">
+          Poznan University of Technology
+        </a>,
+        where I expand my computer science knowledge.
+      </p>
+
+      <a href="#contact" class="contact-link">Get in touch →</a>
+    </section>
+
+    <section class="section-block" aria-labelledby="technologies-heading">
+      <div class="section-header">
+        <h2 id="technologies-heading" class="text-blue">Technologies</h2>
+      </div>
+
+      <p class="text">I have worked with:</p>
+
+      <ul class="tech-list">
+        @for (tech of technologies; track trackByTech($index, tech)) {
+          <li>
+            <a
+              class="tech-item"
+              [routerLink]="['/projects']"
+              [queryParams]="{ tech: tech.query }"
+            >
+              <img [src]="tech.icon" [alt]="tech.name" class="tech-icon" />
+              <span>{{ tech.name }}</span>
+            </a>
+          </li>
+        }
+      </ul>
+    </section>
+
+    <section class="section-block" aria-labelledby="projects-heading">
+      <div class="section-header">
+        <h2 id="projects-heading" class="text-yellow">Projects</h2>
+        <a routerLink="/projects">See all</a>
+      </div>
+
+      <div class="project-list">
+        @for (project of projects; track trackByProject($index, project)) {
+          <article class="project-card">
+            <div class="project-main">
+              <h3>{{ project.title }}</h3>
+              <p>{{ project.description }}</p>
+              <a [routerLink]="[project.href]">Read more →</a>
+            </div>
+            <div class="project-year">{{ project.year }}</div>
+          </article>
+        }
+      </div>
+    </section>
+
+    <section class="section-block thoughts-block" aria-labelledby="blog-heading">
+      <div class="section-header">
+        <h2 id="blog-heading">My small <span class="text-green">Blog</span></h2>
+        <a routerLink="/blog">See all</a>
+      </div>
+
+      <p class="text">
+        Here you can read about some of the technologies I battled with,
+        solutions I came up with and other things I learned along the way.
+      </p>
+    </section>
+
+    <section class="section-block thoughts-block" aria-labelledby="more-heading">
+      <div class="section-header">
+        <h2 id="more-heading">More about <span class="text-red">Me</span></h2>
+      </div>
+
+      <ul class="link-list">
+        <li>
+          <a
+            href="https://www.linkedin.com/in/seweryn-wasilewski/"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            LinkedIn
+          </a>
+        </li>
+        <li>
+          <a
+            href="https://github.com/sewerynWasilewski"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            GitHub
+          </a>
+        </li>
+      </ul>
+    </section>
+
+    <section
+      class="section-block thoughts-block"
+      id="contact"
+      aria-labelledby="contact-heading"
+    >
+      <div class="section-header">
+        <h2 id="contact-heading"><span class="text-blue">Contact</span> Me</h2>
+      </div>
+
+      <p class="text">
+        Mail:
+        <a href="mailto:seweryn.wasilewski@gmail.com">seweryn.wasilewski@gmail.com</a>
+      </p>
+    </section>
+  </article>
+</main>
