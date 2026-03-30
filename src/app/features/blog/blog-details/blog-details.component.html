@@ -1,0 +1,32 @@
+<main class="page">
+  <article class="card">
+    @if (blog(); as selectedBlog) {
+      <section class="section-block">
+        <a routerLink="/blogs">← Back to blog</a>
+
+        <h1>{{ selectedBlog.title }}</h1>
+        <p class="text">{{ selectedBlog.excerpt }}</p>
+        <p class="text">Published: {{ selectedBlog.date }}</p>
+
+        <div class="tag-list">
+          @for (tech of selectedBlog.technologies; track tech) {
+            <a
+              class="tag"
+              [routerLink]="['/blogs']"
+              [queryParams]="{ tech: tech }"
+            >
+              {{ tech }}
+            </a>
+          }
+        </div>
+
+        <p>{{ selectedBlog.content }}</p>
+      </section>
+    } @else {
+      <section class="section-block">
+        <h1>Blog post not found</h1>
+        <a routerLink="/blogs">Back to blog</a>
+      </section>
+    }
+  </article>
+</main>
