@@ -19,11 +19,17 @@ export const routes: Routes = [
     component: ProjectDetailsComponent,
   },
   {
-    path: 'blogs',
+    path: 'blog',
     component: BlogComponent,
   },
   {
-    path: 'blogs/:blog_id',
+    path: 'blog/:blog_id',
     component: BlogDetailsComponent,
   },
+  { 
+    path: 'admin',
+    loadChildren: () =>
+      import('./features/admin/admin.routes')
+        .then(m => m.adminPanelRoutes)
+  }
 ];
