@@ -5,7 +5,7 @@
         <h1>Blog</h1>
 
         @if (techFilter()) {
-          <a routerLink="/blogs">Clear filter</a>
+          <a routerLink="/blog">Clear filter</a>
         }
       </div>
 
@@ -27,7 +27,7 @@
                 @for (tech of blog.technologies; track tech) {
                   <a
                     class="tag"
-                    [routerLink]="['/blogs']"
+                    [routerLink]="['/blog']"
                     [queryParams]="{ tech: tech }"
                   >
                     {{ tech }}
@@ -35,7 +35,7 @@
                 }
               </div>
 
-              <a [routerLink]="['/blogs', blog.id]">Read post →</a>
+              <a [routerLink]="['/blog', blog.id]">Read post →</a>
             </div>
 
             <div class="project-year">{{ blog.date }}</div>
