@@ -3,6 +3,8 @@ import { ActivatedRoute, RouterLink } from '@angular/router';
 import { toSignal } from '@angular/core/rxjs-interop';
 import { map } from 'rxjs/operators';
 
+import { MarkdownRendererComponent } from '../../../shared/components/markdown-renderer/markdown-renderer.component';
+
 type BlogDetails = {
   id: string;
   title: string;
@@ -15,7 +17,7 @@ type BlogDetails = {
 @Component({
   selector: 'app-blog-details',
   standalone: true,
-  imports: [RouterLink],
+  imports: [RouterLink, MarkdownRendererComponent],
   templateUrl: './blog-details.component.html',
   styleUrl: './blog-details.component.css',
 })
@@ -29,7 +31,7 @@ export class BlogDetailsComponent {
       excerpt: 'A short introduction to Terraform state.',
       date: '2026-03-20',
       technologies: ['terraform'],
-      content: 'This is a mock detailed blog post about Terraform state.',
+      content: 'This is a mock detailed blog post about Terraform state. \n\`variable_name\` \n - test \n- test2 \n- does it work\n- think so? \n\`\`\`\ncode block\n\`\`\` \n',
     },
     {
       id: 'ansible-role-structure',
@@ -37,7 +39,8 @@ export class BlogDetailsComponent {
       excerpt: 'A practical way to keep roles clean.',
       date: '2026-03-18',
       technologies: ['ansible', 'linux'],
-      content: 'This is a mock detailed blog post about Ansible role structure.',
+      content: '# This is a mock detailed blog post about Ansible role structure.\n\`variable_name\` \n - test \n- test2 \n- does it work\n- think so? \n\`\`\`\ncode block\n\`\`\` \n',
+
     },
     {
       id: 'proxmox-vm-networking',
@@ -45,7 +48,7 @@ export class BlogDetailsComponent {
       excerpt: 'A few lessons learned while setting up networking.',
       date: '2026-03-15',
       technologies: ['proxmox', 'linux'],
-      content: 'This is a mock detailed blog post about Proxmox networking.',
+      content: ' # A few lessons learned while setting up bridges, NAT and internal networks.\n - test \n- test2 \n- does it work\n- think so? \n\`\`\`\ncode block\n\`\`\` \n',
     },
   ];
 

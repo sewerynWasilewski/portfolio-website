@@ -2,16 +2,16 @@
   <article class="card">
     @if (blog(); as selectedBlog) {
       <section class="section-block">
-        <a routerLink="/blog"><- Back to all blogs</a>
+        <a routerLink="/blog" class="card-link"><- Back to all blogs</a>
 
         <h1>{{ selectedBlog.title }}</h1>
         <p class="text">{{ selectedBlog.excerpt }}</p>
         <p class="text">Published: {{ selectedBlog.date }}</p>
 
-        <div class="tag-list">
+        <div class="tag-list underline-breakline">
           @for (tech of selectedBlog.technologies; track tech) {
             <a
-              class="tag"
+              class="tag-item"
               [routerLink]="['/blog']"
               [queryParams]="{ tech: tech }"
             >
@@ -19,8 +19,7 @@
             </a>
           }
         </div>
-
-        <p>{{ selectedBlog.content }}</p>
+        <app-markdown-renderer [content]=selectedBlog.content></app-markdown-renderer>
       </section>
     } @else {
       <section class="section-block">
