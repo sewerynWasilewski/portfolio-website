@@ -19,10 +19,11 @@
       <div class="project-list">
         @for (blog of filteredBlogs(); track trackByBlog($index, blog)) {
           <article class="project-card">
-            <div class="project-main">
-              <h2>{{ blog.title }}</h2>
-              <p>{{ blog.excerpt }}</p>
-
+            <div class="project-main read-more">
+              <a [routerLink]="['/blog', blog.id]">
+                <h2>{{ blog.title }}</h2>
+                <p>{{ blog.excerpt }}</p>
+              </a>
               <div class="tag-list">
                 @for (tech of blog.technologies; track tech) {
                   <a
