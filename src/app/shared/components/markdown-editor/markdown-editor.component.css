@@ -1,0 +1,33 @@
+.editor-layout {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 24px;
+}
+
+.editor-pane,
+.preview-pane {
+  background: #fff;
+  border: 1px solid #e5e7eb;
+  border-radius: 18px;
+  padding: 20px;
+}
+
+textarea {
+  width: 100%;
+  min-height: 70vh;
+  border: 1px solid #d1d5db;
+  border-radius: 14px;
+  padding: 16px;
+  font: inherit;
+  resize: vertical;
+}
+
+@media (max-width: 900px) {
+  .editor-layout {
+    grid-template-columns: 1fr;
+  }
+
+  textarea {
+    min-height: 40vh;
+  }
+}

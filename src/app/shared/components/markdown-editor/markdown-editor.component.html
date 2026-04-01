@@ -1,0 +1,11 @@
+<div class="editor-layout">
+  <section class="editor-pane">
+    <h2>Edytor</h2>
+    <textarea [formControl]="content"></textarea>
+  </section>
+
+  <section class="preview-pane">
+    <h2>Podgląd</h2>
+    <app-markdown-renderer [content]="content.value"></app-markdown-renderer>
+  </section>
+</div>
