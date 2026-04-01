@@ -1,17 +1,17 @@
 <main class="page">
   <article class="card">
-    @if (project(); as selectedProject) {
+    @if (project; as selectedProject) {
       <section class="section-block">
         <a routerLink="/projects">← Back to projects</a>
 
         <h1>{{ selectedProject.title }}</h1>
         <p class="text">{{ selectedProject.description }}</p>
-        <p class="text">Year: {{ selectedProject.year }}</p>
+        <p class="text">{{ selectedProject.year }}</p>
 
         <div class="tag-list">
           @for (tech of selectedProject.technologies; track tech) {
             <a
-              class="tag"
+              class="tag-item"
               [routerLink]="['/projects']"
               [queryParams]="{ tech: tech }"
             >
@@ -19,8 +19,10 @@
             </a>
           }
         </div>
+      </section>
 
-        <p>{{ selectedProject.content }}</p>
+      <section class="section-block">
+        <app-markdown-renderer [content]="selectedProject.content"></app-markdown-renderer>
       </section>
     } @else {
       <section class="section-block">

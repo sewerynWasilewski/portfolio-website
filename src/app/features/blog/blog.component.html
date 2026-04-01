@@ -26,7 +26,7 @@
               <div class="tag-list">
                 @for (tech of blog.technologies; track tech) {
                   <a
-                    class="tag"
+                    class="tag-item"
                     [routerLink]="['/blog']"
                     [queryParams]="{ tech: tech }"
                   >

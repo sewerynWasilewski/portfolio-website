@@ -1,5 +1,6 @@
-import { Component } from '@angular/core';
+import { Component, inject } from '@angular/core';
 import { RouterLink } from '@angular/router';
+import { ProjectsAPIService, ProjectOverview } from '../../core/services/projects-api.service';
 
 type Technology = {
   name: string;
@@ -7,11 +8,8 @@ type Technology = {
   query: string;
 };
 
-type Project = {
-  title: string;
-  description: string;
+type HomeProject = ProjectOverview & {
   href: string;
-  year: string;
 };
 
 @Component({
@@ -22,6 +20,8 @@ type Project = {
   styleUrl: './home.component.css',
 })
 export class HomeComponent {
+  private readonly projectsService = inject(ProjectsAPIService);
+
   readonly technologies: Technology[] = [
     { name: 'Angular', icon: 'assets/icons/angular.svg', query: 'angular' },
     { name: 'Ansible', icon: 'assets/icons/ansible.svg', query: 'ansible' },
@@ -51,32 +51,18 @@ export class HomeComponent {
     { name: 'OpenGL', icon: 'assets/icons/opengl.svg', query: 'opengl' },
   ];
 
-  readonly projects: Project[] = [
-    {
-      title: 'Homelab',
-      description: 'My personal space to learn and practice DevOps topics and also host this very website.',
-      href: '/projects/homelab',
-      year: '2023',
-    },
-    {
-      title: '3D Renderer',
-      description: 'A renderer that uses a frame graph approach to manage different GPU resources.',
-      href: '/projects/3d-renderer',
-      year: '2023',
-    },
-    {
-      title: 'myTeacher',
-      description: 'An app for e-lessons where teachers get all they need to teach their students online.',
-      href: '/projects/myteacher',
-      year: '2023',
-    },
-  ];
+  readonly projects: HomeProject[] = this.projectsService
+    .getFeaturedProjects(3)
+    .map((project) => ({
+      ...project,
+      href: `/projects/${project.id}`,
+    }));
 
   trackByTech(index: number, tech: Technology): string {
     return tech.query;
   }
 
-  trackByProject(index: number, project: Project): string {
-    return project.title;
+  trackByProject(index: number, project: HomeProject): string {
+    return project.id;
   }
 }
