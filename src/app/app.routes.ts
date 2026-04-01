@@ -4,6 +4,7 @@ import { ProjectsComponent } from './features/projects/projects.component';
 import { ProjectDetailsComponent } from './features/projects/project-details/project-details.component';
 import { BlogComponent } from './features/blog/blog.component';
 import { BlogDetailsComponent } from './features/blog/blog-details/blog-details.component';
+import { MarkdownPlaygroundComponent } from './features/markdown-palyground/markdown-playground.component';
 
 export const routes: Routes = [
   {
@@ -31,5 +32,11 @@ export const routes: Routes = [
     loadChildren: () =>
       import('./features/admin/admin.routes')
         .then(m => m.adminPanelRoutes)
-  }
+  },
+  { 
+    path: 'markdown-test',
+    loadComponent: () =>
+      import('./features/markdown-palyground/markdown-playground.component')
+        .then(m => m.MarkdownPlaygroundComponent)
+  },
 ];
