@@ -2,7 +2,7 @@
   <article class="card">
     @if (blog(); as selectedBlog) {
       <section class="section-block">
-        <a routerLink="/blog" class="card-link"><- Back to all blogs</a>
+        <a routerLink="/blog"><- Back to all blogs</a>
 
         <h1>{{ selectedBlog.title }}</h1>
         <p class="text">{{ selectedBlog.excerpt }}</p>
